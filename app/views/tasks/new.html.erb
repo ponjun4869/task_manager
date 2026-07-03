@@ -1,17 +1,2 @@
 <h1>タスク登録</h1>
-
-<%= form_with model: @task do |f| %>
-
-  <div>
-    <%= f.label :title, "タイトル" %><br>
-    <%= f.text_field :title %>
-  </div>
-
-  <div>
-    <%= f.label :content, "内容" %><br>
-    <%= f.text_area :content %>
-  </div>
-
-  <%= f.submit "登録する" %>
-
-<% end %>
+<%= render "form" %>
