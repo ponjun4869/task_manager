@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+  <div class="container">
+    <%= link_to "Task Manager", root_path, class: "navbar-brand fw-semibold" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="メニューを開閉">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav ms-auto">
+        <%= link_to "タスク一覧", tasks_path, class: "nav-link" %>
+        <%= link_to "新規作成", new_task_path, class: "nav-link" %>
+      </div>
+    </div>
+  </div>
+</nav>
