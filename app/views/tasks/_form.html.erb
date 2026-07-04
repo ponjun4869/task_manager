@@ -1,3 +1,15 @@
+<% if @task.errors.any? %>
+  <div>
+    <h3><%= @task.errors.count %>件のエラーがあります</h3>
+
+    <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model: @task do |f| %>
 
   <div>
