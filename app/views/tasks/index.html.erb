@@ -6,4 +6,8 @@
   <p><%= task.title %></p>
   <%= link_to "詳細", task_path(task) %>
   <%= link_to "編集", edit_task_path(task) %>
+  <%= link_to "削除", task_path(task), data: {
+  turbo_method: :delete,
+  turbo_confirm: "本当に削除しますか？"
+} %>
 <% end %>
