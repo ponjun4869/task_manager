@@ -2,12 +2,25 @@
 
 <%= link_to "新規タスク作成", new_task_path %>
 
-<% @tasks.each do |task| %>
-  <p><%= task.title %></p>
-  <%= link_to "詳細", task_path(task) %>
-  <%= link_to "編集", edit_task_path(task) %>
-  <%= link_to "削除", task_path(task), data: {
-  turbo_method: :delete,
-  turbo_confirm: "本当に削除しますか？"
-} %>
+<%= form_with url: tasks_path, method: :get, local: true, class: "row g-2 my-3" do |f| %>
+  <div class="col-sm-8 col-md-6">
+    <%= f.text_field :q, value: params[:q], placeholder: "キーワードで検索", class: "form-control" %>
+  </div>
+  <div class="col-auto">
+    <%= f.submit "検索", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<% if @tasks.any? %>
+  <% @tasks.each do |task| %>
+    <p><%= task.title %></p>
+    <%= link_to "詳細", task_path(task) %>
+    <%= link_to "編集", edit_task_path(task) %>
+    <%= link_to "削除", task_path(task), data: {
+    turbo_method: :delete,
+    turbo_confirm: "本当に削除しますか？"
+  } %>
+  <% end %>
+<% else %>
+  <p>該当するタスクはありません</p>
 <% end %>

@@ -1,7 +1,12 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @tasks = current_user.tasks
+
+    if params[:q].present?
+      @tasks = @tasks.where("title ILIKE ? OR content ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+    end
   end
 
   def show
@@ -49,4 +54,3 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :content)
   end
 end
-
