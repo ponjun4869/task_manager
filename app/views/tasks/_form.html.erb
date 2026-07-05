@@ -26,6 +26,13 @@
 
   <br>
 
+  <div>
+    <%= f.label :status, "ステータス" %><br>
+    <%= f.select :status, Task.status_options, {}, class: "form-select" %>
+  </div>
+
+  <br>
+
   <%= f.submit %>
 
 <% end %>
