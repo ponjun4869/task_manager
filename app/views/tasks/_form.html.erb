@@ -27,6 +27,11 @@
     <%= f.select :status, Task.status_options, {}, class: "form-select" %>
   </div>
 
+  <div class="mb-4">
+    <%= f.label :priority, "優先度", class: "form-label" %>
+    <%= f.select :priority, Task.priority_options, {}, class: "form-select" %>
+  </div>
+
   <div class="d-flex gap-2">
     <%= f.submit class: "btn btn-primary" %>
     <%= link_to "戻る", tasks_path, class: "btn btn-outline-secondary" %>
