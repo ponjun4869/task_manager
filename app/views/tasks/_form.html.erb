@@ -3,6 +3,7 @@
     <h2 class="h6"><%= @task.errors.count %>件のエラーがあります</h2>
 
     <ul class="mb-0">
+      <%# 保存に失敗した理由を1件ずつ表示する %>
       <% @task.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
@@ -10,6 +11,7 @@
   </div>
 <% end %>
 
+<%# new画面とedit画面で共通利用するタスクフォーム %>
 <%= form_with model: @task do |f| %>
 
   <div class="mb-3">
@@ -24,11 +26,13 @@
 
   <div class="mb-4">
     <%= f.label :status, "ステータス", class: "form-label" %>
+    <%# Taskモデルで定義したステータス選択肢を表示する %>
     <%= f.select :status, Task.status_options, {}, class: "form-select" %>
   </div>
 
   <div class="mb-4">
     <%= f.label :priority, "優先度", class: "form-label" %>
+    <%# Taskモデルで定義した優先度選択肢を表示する %>
     <%= f.select :priority, Task.priority_options, {}, class: "form-select" %>
   </div>
 
