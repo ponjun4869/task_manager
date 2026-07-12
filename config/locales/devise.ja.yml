@@ -1,0 +1,19 @@
+ja:
+  devise:
+    failure:
+      already_authenticated: "すでにログインしています。"
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
+      unauthenticated: "ログインまたは新規登録が必要です。"
+      timeout: "セッションが切れました。もう一度ログインしてください。"
+    registrations:
+      signed_up: "アカウント登録が完了しました。"
+      updated: "アカウント情報を更新しました。"
+      destroyed: "アカウントを削除しました。"
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+      already_signed_out: "すでにログアウトしています。"
+  errors:
+    messages:
+      not_saved: "入力内容を確認してください。"
