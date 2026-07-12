@@ -69,3 +69,5 @@ end
 gem "cssbundling-rails", "~> 1.4"
 
 gem "devise", "~> 5.0"
+
+gem "kaminari", "~> 1.2"

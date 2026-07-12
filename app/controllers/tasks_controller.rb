@@ -7,6 +7,8 @@ class TasksController < ApplicationController
     if params[:q].present?
       @tasks = @tasks.where("title ILIKE ? OR content ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
     end
+
+    @tasks = @tasks.page(params[:page]).per(10)
   end
 
   def show
