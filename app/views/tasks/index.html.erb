@@ -31,6 +31,7 @@
           <th scope="col">タイトル</th>
           <th scope="col">ステータス</th>
           <th scope="col">優先度</th>
+          <th scope="col">期限日</th>
           <th scope="col" class="text-end">操作</th>
         </tr>
       </thead>
@@ -46,6 +47,7 @@
               <%# 優先度もモデル側のメソッドで表示名とバッジ色を切り替える %>
               <span class="badge <%= task.priority_badge_class %>"><%= task.priority_label %></span>
             </td>
+            <td><%= task.deadline&.strftime("%Y/%m/%d") || "未設定" %></td>
             <td class="text-end">
               <div class="d-inline-flex gap-2">
                 <%= link_to "詳細", task_path(task), class: "btn btn-sm btn-outline-secondary" %>

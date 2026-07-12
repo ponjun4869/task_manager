@@ -18,7 +18,10 @@
         <dd class="fs-5 fw-semibold mb-4"><%= @task.title %></dd>
 
         <dt class="text-body-secondary">内容</dt>
-        <dd class="mb-0"><%= simple_format(@task.content) %></dd>
+        <dd class="mb-4"><%= simple_format(@task.content) %></dd>
+
+        <dt class="text-body-secondary">期限日</dt>
+        <dd class="mb-0"><%= @task.deadline&.strftime("%Y/%m/%d") || "未設定" %></dd>
       </dl>
     </div>
 
