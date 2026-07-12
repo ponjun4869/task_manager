@@ -63,6 +63,6 @@ class TasksController < ApplicationController
 
   def task_params
     # フォームから受け取れる項目を制限する
-    params.require(:task).permit(:title, :content, :status, :priority)
+    params.require(:task).permit(:title, :content, :status, :priority, :deadline)
   end
 end

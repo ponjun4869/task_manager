@@ -14,6 +14,7 @@ ja:
         content: 内容
         status: ステータス
         priority: 優先度
+        deadline: 期限日
   errors:
     format: "%{attribute}%{message}"
     messages:
