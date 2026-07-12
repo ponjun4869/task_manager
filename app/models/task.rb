@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  # 1つのタスクは、必ず1人のユーザーに紐づく
   belongs_to :user
 
   # DBには整数で保存し、Rails上ではステータス名で扱う
@@ -25,6 +26,7 @@ class Task < ApplicationRecord
   # 新規作成時の初期優先度を中にする
   after_initialize :set_default_priority, if: :new_record?
 
+  # 画面に表示するため、ステータスを日本語に変換する
   def status_label
     {
       "not_started" => "未着手",
@@ -33,6 +35,7 @@ class Task < ApplicationRecord
     }[status]
   end
 
+  # ステータスごとにBootstrapのバッジ色を切り替える
   def status_badge_class
     {
       "not_started" => "text-bg-secondary",
@@ -41,6 +44,7 @@ class Task < ApplicationRecord
     }[status]
   end
 
+  # 画面に表示するため、優先度を日本語に変換する
   def priority_label
     {
       "low" => "低",
@@ -49,6 +53,7 @@ class Task < ApplicationRecord
     }[priority]
   end
 
+  # 優先度ごとにBootstrapのバッジ色を切り替える
   def priority_badge_class
     {
       "low" => "text-bg-secondary",
@@ -57,10 +62,12 @@ class Task < ApplicationRecord
     }[priority]
   end
 
+  # フォームのセレクトボックスで使うステータス選択肢を作る
   def self.status_options
     statuses.keys.map { |status| [new(status: status).status_label, status] }
   end
 
+  # フォームのセレクトボックスで使う優先度選択肢を作る
   def self.priority_options
     priorities.keys.map { |priority| [new(priority: priority).priority_label, priority] }
   end
