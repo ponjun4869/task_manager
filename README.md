@@ -48,7 +48,68 @@ Ruby on Railsで作成するタスク管理アプリです。
 
 ## セットアップ方法
 
-※ Docker環境構築後に記載予定
+### Dockerを使う場合
+
+このアプリはDockerを使って、RailsとPostgreSQLをまとめて起動できます。
+
+```bash
+docker compose build
+```
+
+```bash
+docker compose up
+```
+
+起動後、ブラウザで以下のURLにアクセスします。
+
+```text
+http://localhost:3000
+```
+
+PostgreSQLの中身を確認したい場合は、Adminerにアクセスします。
+
+```text
+http://localhost:8080
+```
+
+Adminerのログイン情報は以下です。
+
+```text
+システム: PostgreSQL
+サーバ: db
+ユーザ名: postgres
+パスワード: password
+データベース: task_manager_development
+```
+
+初回起動時は、`docker-compose.yml` の設定により `bin/rails db:prepare` が実行されます。  
+そのため、データベース作成とマイグレーションは自動で行われます。
+
+コンテナを停止する場合は、以下のコマンドを実行します。
+
+```bash
+docker compose down
+```
+
+### ローカル環境で起動する場合
+
+Ruby、PostgreSQL、Node.js、npmをローカルに用意している場合は、以下の手順で起動できます。
+
+```bash
+bundle install
+```
+
+```bash
+npm install
+```
+
+```bash
+bin/rails db:prepare
+```
+
+```bash
+bin/dev
+```
 
 ## 開発目的
 
