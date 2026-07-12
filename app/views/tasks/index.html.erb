@@ -1,27 +1,62 @@
-<h1>タスク一覧</h1>
-
-<%= link_to "新規タスク作成", new_task_path %>
-
-<%= form_with url: tasks_path, method: :get, local: true, class: "row g-2 my-3" do |f| %>
-  <div class="col-sm-8 col-md-6">
-    <%= f.text_field :q, value: params[:q], placeholder: "キーワードで検索", class: "form-control" %>
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+  <div>
+    <h1 class="h3 mb-1">タスク一覧</h1>
+    <p class="text-body-secondary mb-0">登録したタスクを確認・検索できます。</p>
   </div>
-  <div class="col-auto">
-    <%= f.submit "検索", class: "btn btn-primary" %>
-  </div>
-<% end %>
+
+  <%= link_to "新規タスク作成", new_task_path, class: "btn btn-primary" %>
+</div>
+
+<div class="border rounded p-3 mb-4 bg-body-tertiary">
+  <%= form_with url: tasks_path, method: :get, local: true, class: "row g-2 align-items-center" do |f| %>
+    <div class="col-sm-8 col-md-6">
+      <%= f.text_field :q, value: params[:q], placeholder: "キーワードで検索", class: "form-control" %>
+    </div>
+    <div class="col-auto">
+      <%= f.submit "検索", class: "btn btn-outline-primary" %>
+    </div>
+    <% if params[:q].present? %>
+      <div class="col-auto">
+        <%= link_to "クリア", tasks_path, class: "btn btn-outline-secondary" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
 <% if @tasks.any? %>
-  <% @tasks.each do |task| %>
-    <p><%= task.title %></p>
-    <p>ステータス: <%= task.status_label %></p>
-    <%= link_to "詳細", task_path(task) %>
-    <%= link_to "編集", edit_task_path(task) %>
-    <%= link_to "削除", task_path(task), data: {
-    turbo_method: :delete,
-    turbo_confirm: "本当に削除しますか？"
-  } %>
-  <% end %>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th scope="col">タイトル</th>
+          <th scope="col">ステータス</th>
+          <th scope="col" class="text-end">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <td class="fw-semibold"><%= task.title %></td>
+            <td>
+              <span class="badge <%= task.status_badge_class %>"><%= task.status_label %></span>
+            </td>
+            <td class="text-end">
+              <div class="d-inline-flex gap-2">
+                <%= link_to "詳細", task_path(task), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to "編集", edit_task_path(task), class: "btn btn-sm btn-outline-primary" %>
+                <%= link_to "削除", task_path(task), data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "本当に削除しますか？"
+                }, class: "btn btn-sm btn-outline-danger" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% else %>
-  <p>該当するタスクはありません</p>
+  <div class="border rounded p-4 text-center text-body-secondary">
+    該当するタスクはありません
+  </div>
 <% end %>

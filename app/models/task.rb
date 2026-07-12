@@ -23,6 +23,14 @@ class Task < ApplicationRecord
     }[status]
   end
 
+  def status_badge_class
+    {
+      "not_started" => "text-bg-secondary",
+      "in_progress" => "text-bg-primary",
+      "completed" => "text-bg-success"
+    }[status]
+  end
+
   def self.status_options
     statuses.keys.map { |status| [new(status: status).status_label, status] }
   end
