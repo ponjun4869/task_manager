@@ -9,13 +9,24 @@
 
 <div class="border rounded p-3 mb-4 bg-body-tertiary">
   <%= form_with url: tasks_path, method: :get, local: true, class: "row g-2 align-items-center" do |f| %>
-    <div class="col-sm-8 col-md-6">
+    <div class="col-sm-6 col-md-5">
       <%= f.text_field :q, value: params[:q], placeholder: "キーワードで検索", class: "form-control" %>
     </div>
-    <div class="col-auto">
-      <%= f.submit "検索", class: "btn btn-outline-primary" %>
+    <div class="col-sm-6 col-md-3">
+      <%= f.select :sort,
+                   [
+                     ["新しい順", "newest"],
+                     ["古い順", "oldest"],
+                     ["期限日が近い順", "deadline"],
+                     ["優先度が高い順", "priority"]
+                   ],
+                   { selected: params[:sort] },
+                   class: "form-select" %>
     </div>
-    <% if params[:q].present? %>
+    <div class="col-auto">
+      <%= f.submit "適用", class: "btn btn-outline-primary" %>
+    </div>
+    <% if params[:q].present? || params[:sort].present? %>
       <div class="col-auto">
         <%= link_to "クリア", tasks_path, class: "btn btn-outline-secondary" %>
       </div>
