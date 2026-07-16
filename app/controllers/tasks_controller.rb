@@ -11,6 +11,18 @@ class TasksController < ApplicationController
       @tasks = @tasks.where("title ILIKE ? OR content ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
     end
 
+    # 選択された並び順を適用する
+    @tasks = case params[:sort]
+             when "oldest"
+               @tasks.order(created_at: :asc)
+             when "deadline"
+               @tasks.order(Arel.sql("deadline ASC NULLS LAST"))
+             when "priority"
+               @tasks.order(priority: :desc, created_at: :desc)
+             else
+               @tasks.order(created_at: :desc)
+             end
+
     # 1ページあたり10件ずつ表示する
     @tasks = @tasks.page(params[:page]).per(10)
   end
