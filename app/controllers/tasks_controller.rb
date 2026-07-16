@@ -18,6 +18,12 @@ class TasksController < ApplicationController
   def show
     # 他のユーザーのタスクを見られないように、current_user.tasksから探す
     @task = current_user.tasks.find(params[:id])
+
+    return unless @task.deadline
+
+    @weather_forecast = WeatherForecastService.fetch_for_date(@task.deadline)
+  rescue WeatherForecastService::Error
+    @weather_forecast_error = true
   end
 
   def new

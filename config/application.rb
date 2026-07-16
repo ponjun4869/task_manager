@@ -23,7 +23,8 @@ module TaskManager
     #
     # 画面表示やエラーメッセージの標準言語を日本語にする
     config.i18n.default_locale = :ja
-    # config.time_zone = "Central Time (US & Canada)"
+    # 日付や時刻を日本時間として扱う
+    config.time_zone = "Tokyo"
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

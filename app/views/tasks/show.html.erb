@@ -25,6 +25,33 @@
       </dl>
     </div>
 
+    <% if @task.deadline %>
+      <div class="border rounded p-4 mb-3">
+        <h2 class="h5 mb-3">期限日の東京の天気予報</h2>
+
+        <% if @weather_forecast %>
+          <dl class="row mb-2">
+            <dt class="col-sm-4 text-body-secondary">天気</dt>
+            <dd class="col-sm-8"><%= @weather_forecast[:weather_description] %></dd>
+
+            <dt class="col-sm-4 text-body-secondary">最高気温</dt>
+            <dd class="col-sm-8"><%= @weather_forecast[:maximum_temperature] %>℃</dd>
+
+            <dt class="col-sm-4 text-body-secondary">最低気温</dt>
+            <dd class="col-sm-8 mb-0"><%= @weather_forecast[:minimum_temperature] %>℃</dd>
+          </dl>
+        <% elsif @weather_forecast_error %>
+          <p class="text-danger mb-2">天気予報を取得できませんでした。時間をおいて再度お試しください。</p>
+        <% else %>
+          <p class="text-body-secondary mb-2">この期限日は天気予報の対象期間外です。</p>
+        <% end %>
+
+        <p class="small text-body-secondary mb-0">
+          天気データ：<%= link_to "Open-Meteo", "https://open-meteo.com/", target: "_blank", rel: "noopener noreferrer" %>
+        </p>
+      </div>
+    <% end %>
+
     <div class="d-flex gap-2">
       <%= link_to "編集", edit_task_path(@task), class: "btn btn-primary" %>
       <%= link_to "一覧へ戻る", tasks_path, class: "btn btn-outline-secondary" %>
