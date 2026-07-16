@@ -35,6 +35,8 @@ end
 RSpec.configure do |config|
   # FactoryBotのメソッドを省略形で使えるようにする
   config.include FactoryBot::Syntax::Methods
+  # リクエストスペックでDeviseのsign_inを使えるようにする
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
