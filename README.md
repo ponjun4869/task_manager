@@ -7,6 +7,12 @@ Ruby on Railsで作成するタスク管理アプリです。
 
 ※ デプロイ後に記載予定
 
+## 画面イメージ
+
+### タスク一覧
+
+![タスク一覧画面](docs/images/task-list.jpg)
+
 ## 使用技術
 
 ### Backend
